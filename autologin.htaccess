@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !^/autologin.php [NC]
+RewriteCond %{HTTP_COOKIE} !^.*FileRunSID.*$ [NC]
+RewriteRule ^ /autologin.php [NC,L]
