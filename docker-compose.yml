@@ -1,0 +1,24 @@
+services:
+    filerun:
+        image: filerun
+        # build: .
+        restart: always
+        environment:
+            FR_DB_HOST: filerun_db
+            FR_DB_USER: root
+            FR_DB_PASS: password
+            AUTOLOGIN_USERNAME: superuser
+        ports:
+            - 8080:80
+        volumes:
+            - ./test/filerun/data:/var/www/html/system/data
+            - ./test/files:/user-files
+
+    filerun_db:
+        image: mariadb:10.1.48
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_DATABASE: filerun
+        volumes:
+            - ./test/filerun/db:/var/lib/mysql
